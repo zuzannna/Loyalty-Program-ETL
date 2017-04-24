@@ -1,0 +1,10 @@
+# Requirements for Loyalty Program ETL.
+# To use type: pip install -r requirements.txt
+
+## Requirements without Version specifiers
+matplotlib
+numpy
+seaborn
+scikit-learn
+numpy
+sqlite3
