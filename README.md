@@ -6,27 +6,25 @@ First, my goal was to write a script that extracts the data from the provided CS
 
 __customers.csv__: The customer CSV file provides a list of customer data, where each row represents a unique customer. Each column represents an attribute or value associated with the customer. The columns include:
 
-<code>id</code>: unique user identification number
+1. <code>id</code>: unique user identification number
 
-<code>date</code>: date the user signed up for the service
+2. <code>date</code>: date the user signed up for the service
 
-<code>loyalty</code>: Whether the user is enrolled in the program (enrolled) or part of the control group (control)
+3. <code>loyalty</code>: Whether the user is enrolled in the program (enrolled) or part of the control group (control)
 
-<code>location</code>: Location attribute
+4. <code>location</code>: Location attribute
 
-<code>gender</code>: Gender attribute
+5. <code>age</code>: Age attribute
 
-<code>age</code>: Age attribute
+6. <code>favorite_movie_line</code>: Favorite movie line of all time
 
-<code>favorite_movie_line</code>: Favorite movie line of all time
+7. <code>number_of_purchases</code>: Total number of purchases
 
-<code>number_of_purchases</code>: Total number of purchases
+8. <code>value_of_purchases</code>: Total value of purchases (in cents)
 
-<code>value_of_purchases</code>: Total value of purchases (in cents)
+9. <code>total_standard_points</code>: Total standard points earned from purchases (if enrolled in loyalty)
 
-<code>total_standard_points</code>: Total standard points earned from purchases (if enrolled in loyalty)
-
-<code>total_points_redeemed</code>: Total points redeemed for purchase discount
+10. <code>total_points_redeemed</code>: Total points redeemed for purchase discount
 
 __transactions.csv__: The transaction CSV file provides a list of all transactions completed over a 2 year time period. Each column represents an attribute or value associated with a transaction.
 
