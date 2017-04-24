@@ -2,26 +2,11 @@
 
 ## Creating the ETL pipeline
 
-First, my goal was to write a script that extracts the data from the provided CSV files and uploads it to a local database.
+First, my goal was to write a script that __extracts__ the data from the provided CSV files and __uploads__ it to a local database.
 
 ### Data
 
-Data consists of two .csv files, <code>customers.csv</code> and <code>transactions.csv</code> which I uploaded into a local database using SQLite, joined and performed basic aggregation to fill in missing colums (more about that below). 
-
-I created a local database with the following commands:
-
-<pre>
-try:
-    # Open the connection
-    conn = sqlite3.connect('customers_transactions.db')
-    # Write the customers and transactions data frames to a local database
-    transactions.to_sql("Transactions", conn, flavor='sqlite',index=False)
-    customers.to_sql("Customers", conn, flavor='sqlite',index=False)
-    # Close the connection
-    conn.close()
-except ValueError:
-    print 'Database already in the current directory, move on.'
-</pre>
+Data consists of two .csv files, <code>customers.csv</code> and <code>transactions.csv</code> which I uploaded into a local database using SQLite, joined and performed basic aggregation to fill in missing colums. 
 
 __customers.csv__: The customer CSV file provides a list of customer data, where each row represents a unique customer. Each column represents an attribute or value associated with the customer. The columns include:
 
@@ -51,6 +36,25 @@ __transactions.csv__: The transaction CSV file provides a list of all transactio
 2. <code>user_id</code>: The id of the user that completed the transaction
 3. <code>value</code>: The value of the transaction (in cents)
 4. <code>point_differential</code>: The difference between points earned and points redeemed (i.e. pointsdifferential = standardpointsearned - pointsredeemed)
+
+## Creating the database
+
+I created a local database with the following commands:
+
+<pre>
+try:
+    # Open the connection
+    conn = sqlite3.connect('customers_transactions.db')
+    # Write the customers and transactions data frames to a local database
+    transactions.to_sql("Transactions", conn, flavor='sqlite',index=False)
+    customers.to_sql("Customers", conn, flavor='sqlite',index=False)
+    # Close the connection
+    conn.close()
+except ValueError:
+    print 'Database already in the current directory, move on.'
+</pre>
+
+## Join & Aggregate
 
 With the data loaded into your database, I wrote a script that extracts the data from local database and fills in the missing values in the following columns:
 
@@ -96,7 +100,11 @@ conn.commit()
 conn.close()
 </pre>
 
-In this data challenge my goal was to investigate the efficacy of the loyalty program. My insights are described below:
+In the .pynb file you will find an alternative analysis using <code>pandas</code> package. The advantage of using the SQL database is that it runs __much__ faster.
+
+## Insights about the loyalty program
+
+Here my goal was to investigate the efficacy of the loyalty program. I grouped the conclusions of my analysis into executive summary below:
 
 - Customers who are in the loyaty program tend to spend on average more money every time they shop (*t* = 4.85, *p* < 0.001) and they also shop more often. However, the loyalty program also costs money - with every applied discount the company spends 500 cents. It seems reasonable to take that into account and adjust the calculations.
 
