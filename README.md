@@ -7,15 +7,25 @@ First, my goal was to write a script that extracts the data from the provided CS
 __customers.csv__: The customer CSV file provides a list of customer data, where each row represents a unique customer. Each column represents an attribute or value associated with the customer. The columns include:
 
 <code>id</code>: unique user identification number
+
 <code>date</code>: date the user signed up for the service
+
 <code>loyalty</code>: Whether the user is enrolled in the program (enrolled) or part of the control group (control)
+
 <code>location</code>: Location attribute
+
 <code>gender</code>: Gender attribute
+
 <code>age</code>: Age attribute
+
 <code>favorite_movie_line</code>: Favorite movie line of all time
+
 <code>number_of_purchases</code>: Total number of purchases
+
 <code>value_of_purchases</code>: Total value of purchases (in cents)
+
 <code>total_standard_points</code>: Total standard points earned from purchases (if enrolled in loyalty)
+
 <code>total_points_redeemed</code>: Total points redeemed for purchase discount
 
 __transactions.csv__: The transaction CSV file provides a list of all transactions completed over a 2 year time period. Each column represents an attribute or value associated with a transaction.
@@ -25,12 +35,12 @@ __transactions.csv__: The transaction CSV file provides a list of all transactio
 <code>value</code>: The value of the transaction (in cents)
 <code>point_differential</code>: The difference between points earned and points redeemed (i.e. pointsdifferential = standardpointsearned - pointsredeemed)
 
-With the data loaded into your database, write a script that extracts the data from your local database and aggregates the data so that you can fill in the missing values in the following columns:
+With the data loaded into your database, I wrote a script that extracts the data from local database and fills in the missing values in the following columns:
 
-number_of_purchases
-value_of_purchases
-total_standard_points
-total_points_redeemed
+<code>number_of_purchases</code>
+<code>value_of_purchases</code>
+<code>total_standard_points</code>
+<code>total_points_redeemed</code>
 
 In this data challenge my goal was to investigate the efficacy of the loyalty program. My insights are described below:
 
