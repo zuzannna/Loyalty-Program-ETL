@@ -4,6 +4,10 @@
 
 First, my goal was to write a script that extracts the data from the provided CSV files and uploads it to a local database.
 
+### Data
+
+Data consists of two .csv files which I uploaded into a local database using SQLite, joined and performed basic aggregation to fill in missing colums (more about that below).
+
 __customers.csv__: The customer CSV file provides a list of customer data, where each row represents a unique customer. Each column represents an attribute or value associated with the customer. The columns include:
 
 1. <code>id</code>: unique user identification number
@@ -28,10 +32,10 @@ __customers.csv__: The customer CSV file provides a list of customer data, where
 
 __transactions.csv__: The transaction CSV file provides a list of all transactions completed over a 2 year time period. Each column represents an attribute or value associated with a transaction.
 
-<code>date</code>: date the transaction was completed
-<code>user_id</code>: The id of the user that completed the transaction
-<code>value</code>: The value of the transaction (in cents)
-<code>point_differential</code>: The difference between points earned and points redeemed (i.e. pointsdifferential = standardpointsearned - pointsredeemed)
+1. <code>date</code>: date the transaction was completed
+2. <code>user_id</code>: The id of the user that completed the transaction
+3. <code>value</code>: The value of the transaction (in cents)
+4. <code>point_differential</code>: The difference between points earned and points redeemed (i.e. pointsdifferential = standardpointsearned - pointsredeemed)
 
 With the data loaded into your database, I wrote a script that extracts the data from local database and fills in the missing values in the following columns:
 
@@ -39,6 +43,43 @@ With the data loaded into your database, I wrote a script that extracts the data
 <code>value_of_purchases</code>
 <code>total_standard_points</code>
 <code>total_points_redeemed</code>
+
+With the following query:
+
+<pre>
+# Open the connection
+conn = sqlite3.connect('customers_transactions.db')
+a = conn.cursor()
+
+# Write the SQLite query executed in the next step
+sql_query = "SELECT user_id, loyalty, signup_date, location,\
+            gender, age, favorite_movie_line,\
+            count(user_id) as number_of_purchases,\
+            sum(value) as value_of_purchases,\
+            CASE loyalty\
+                WHEN 'control' THEN\
+                    0\
+                ELSE\
+                    sum(round((value/100)*100)/10)\
+                END total_standard_points,\
+            CASE loyalty\
+                WHEN 'control' THEN\
+                    0\
+                ELSE\
+                    sum(round((round((Transactions.value/100)*100)/10 - \
+            Transactions.point_differential)/1000)*1000)\
+                END total_points_redeemed\
+            FROM Transactions JOIN Customers on user_id = id\
+            GROUP BY user_id ORDER BY user_id"
+
+df = pd.read_sql_query(sql_query, conn)
+
+# Save (commit) the changes
+conn.commit()
+
+# Close the connection
+conn.close()
+</pre>
 
 In this data challenge my goal was to investigate the efficacy of the loyalty program. My insights are described below:
 
