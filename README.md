@@ -6,7 +6,22 @@ First, my goal was to write a script that extracts the data from the provided CS
 
 ### Data
 
-Data consists of two .csv files which I uploaded into a local database using SQLite, joined and performed basic aggregation to fill in missing colums (more about that below).
+Data consists of two .csv files, <code>customers.csv</code> and <code>transactions.csv</code> which I uploaded into a local database using SQLite, joined and performed basic aggregation to fill in missing colums (more about that below). 
+
+I created a local database with the following commands:
+
+<pre>
+try:
+    # Open the connection
+    conn = sqlite3.connect('customers_transactions.db')
+    # Write the customers and transactions data frames to a local database
+    transactions.to_sql("Transactions", conn, flavor='sqlite',index=False)
+    customers.to_sql("Customers", conn, flavor='sqlite',index=False)
+    # Close the connection
+    conn.close()
+except ValueError:
+    print 'Database already in the current directory, move on.'
+</pre>
 
 __customers.csv__: The customer CSV file provides a list of customer data, where each row represents a unique customer. Each column represents an attribute or value associated with the customer. The columns include:
 
