@@ -1,5 +1,7 @@
 # Investigating customer transactions
 
+Analyzing customer transactions is crucial for every business. How often they shop? What's their average spending? Does enrollment in a loyalty program influence their spending habits? These are some of the questions I attempted to answer here. 
+
 ## Creating the ETL pipeline
 
 First, my goal was to write a script that __extracts__ the data from the provided CSV files and __uploads__ it to a local database.
@@ -53,6 +55,8 @@ try:
 except ValueError:
     print 'Database already in the current directory, move on.'
 </pre>
+
+If the database already exists, it will raise an error and move on.
 
 ## Join & Aggregate
 
@@ -117,13 +121,13 @@ Next, my goal was to investigate the efficacy of the loyalty program. I grouped 
 - Most customers make their first purchase shortly after signing up for the loyalty program. Enrolled customers tend to spend more money on the purchase soon after becoming members, as indicated by a negative correlation *r* = -0.13, *p* < 0.001. The correlation is weak, but highly significant. 
 
 ![time_to_first_purchase](images/time_to_first_purchase.png)
-![time_to_first_purchase_purchase_value](images/time_to_first_purchase_purchase_value.png)
+![time_to_first_purchase_purchase_value](images/time_to_first_purchase_purchase_value_outlier.png)
 
 # Testing
 
 To test the code to make sure it works run the following command in your terminal shell from the <code>/Loyalty-Program-ETL/</code>directory:
 
-    python tests/test_utilities.py    
+    python code/test_utilities.py    
 
 You will then see a report on the testing results.
 
