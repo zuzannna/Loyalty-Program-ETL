@@ -118,9 +118,7 @@ Next, my goal was to investigate the efficacy of the loyalty program. I grouped 
 
 ![net_mean_purchase](images/net_mean_purchase.png)
 
-- Most customers make their first purchase shortly after signing up for the loyalty program. Enrolled customers tend to spend more money on the purchase soon after becoming members, as indicated by a negative correlation *r* = -0.13, *p* < 0.001. The correlation is weak, but highly significant. 
-
-This relationship gains in significance after excluding one outlier who made a purchase of a value highly exceeding other customers. In this case, I considered it justified to remove them from further analysis.
+- Most customers make their first purchase shortly after signing up for the loyalty program. Enrolled customers tend to spend more money on the purchase soon after becoming members, as indicated by a negative correlation *r* = -0.13, *p* < 0.001. The correlation is weak, but highly significant. This relationship gains in significance after excluding one outlier who made a purchase of a value highly exceeding other customers. In this case, I considered it justified to remove them from further analysis.
 
 ![time_to_first_purchase](images/time_to_first_purchase.png)
 ![time_to_first_purchase_purchase_value_outlier](images/time_to_first_purchase_purchase_value_outlier.png)
