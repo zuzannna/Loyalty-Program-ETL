@@ -2,8 +2,6 @@ from unittest import TestCase
 import utilities as u
 import pandas as pd
 
-print "hello"
-
 class TestUtilities(TestCase):
     def test__points(self):
         expected_output = 100
@@ -39,7 +37,7 @@ class TestUtilities(TestCase):
 
         self.assertEqual(expected_output, actual_output)
 
-
-
+if __name__ == '__main__':
+    unittest.main()
 
 	
