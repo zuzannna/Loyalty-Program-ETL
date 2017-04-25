@@ -125,9 +125,9 @@ Next, my goal was to investigate the efficacy of the loyalty program. I grouped 
 
 # Testing
 
-To test the code to make sure it works run the following command in your terminal shell from the <code>/Loyalty-Program-ETL/</code>directory:
+To test the code to make sure it works run the following command in your terminal shell from the <code>/Loyalty-Program-ETL/code</code>directory:
 
-    python code/test_utilities.py    
+    python -m unittest test_utilities    
 
 You will then see a report on the testing results.
 
